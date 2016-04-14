@@ -26,6 +26,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
@@ -122,8 +123,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_toolbar);
 
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setIcon(R.drawable.logo);
 
 
         // Set up the login form.
@@ -143,6 +149,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
         sp = getSharedPreferences("Check", Context.MODE_PRIVATE);
+
 
         Button mEmailSignInButton = (Button) findViewById(R.id.sign_in);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {

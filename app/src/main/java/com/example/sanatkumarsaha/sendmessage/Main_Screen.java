@@ -16,8 +16,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-
 public class Main_Screen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -27,19 +25,6 @@ public class Main_Screen extends AppCompatActivity
         setContentView(R.layout.activity_main__screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        ImageView imageView = (ImageView)findViewById(R.id.imageView2);
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Main_Screen.this,"View Present",Toast.LENGTH_LONG).show();
-            }
-        });
-
-        Picasso.with(this).load("http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg").into(imageView);
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -89,20 +74,9 @@ public class Main_Screen extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_signout) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">#FFFFD54F</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
@@ -16,11 +16,25 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="AutoCompleteTextViewLight" parent="@android:style/Widget.AutoCompleteTextView">
-        <item name="android:textColorHint">#ffffff</item>
-        <item name="colorAccent">#ffffff</item>
-        <item name="colorControlNormal">#ffffff</item>
-        <item name="colorControlActivated">#ffffff</item>
+        <item name="android:textColorHint">#000000</item>
+        <item name="colorAccent">#000000</item>
+        <item name="colorControlNormal">#000000</item>
+        <item name="colorControlActivated">#000000</item>
+        <item name="android:layout_marginTop">15dp</item>
     </style>
+
+    <style name="MyButtonGreen" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#1a481c</item>
+        <item name="colorButtonNormal">#388e3c</item>
+    </style>
+
+    <style name="MyButtonBluish" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#384a52</item>
+        <item name="colorButtonNormal">#455a64</item>
+    </style>
+    
+
 
 </resources>
