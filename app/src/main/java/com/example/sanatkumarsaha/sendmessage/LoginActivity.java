@@ -37,6 +37,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -84,6 +85,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import javax.net.ssl.HttpsURLConnection;
 
+import static android.Manifest.permission.CHANGE_COMPONENT_ENABLED_STATE;
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -117,6 +119,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     String webPage = "";
     JSONObject output,device,user_details;
     int logInFlag =0 ;
+    CheckBox checkBox;
 
 
 
@@ -133,6 +136,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
         // Set up the login form.
+        checkBox = (CheckBox)findViewById(R.id.checkBox);
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
 
@@ -150,6 +154,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         sp = getSharedPreferences("Check", Context.MODE_PRIVATE);
 
+        if (!sp.getString("memail","").equals("")){
+            mEmailView.setText(sp.getString("memail",""));
+            mPasswordView.setText(sp.getString("password",""));
+            checkBox.setChecked(true);
+        }
 
         Button mEmailSignInButton = (Button) findViewById(R.id.sign_in);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
@@ -488,6 +497,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putBoolean("LogInStat", true);
+
+                if (checkBox.isChecked()) {
+                    editor.putString("memail", mEmail);
+                    editor.putString("password", mPassword);
+                } else {
+                    editor.putString("memail", "");
+                    editor.putString("password", "");
+                }
                 editor.putString("username", username);
                 editor.putString("token", token);
                 editor.putInt("id", id);
@@ -528,8 +545,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             editor.putString("name", user_details.getString("name"));
                             editor.putString("email", user_details.getString("email"));
                             editor.commit();
-                        // TODO:    Intent i = new Intent(LoginActivity.this,SelectCity.class);
-                        //todo    startActivity(i);
+                           Intent i = new Intent(LoginActivity.this,Main_Screen.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                           startActivity(i);
                             finish();
 
                         } catch (MalformedURLException e) {
