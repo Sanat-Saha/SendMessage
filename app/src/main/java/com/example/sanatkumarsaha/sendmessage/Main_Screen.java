@@ -1,6 +1,5 @@
 package com.example.sanatkumarsaha.sendmessage;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,25 +13,22 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.net.URI;
 
 public class Main_Screen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,6 +38,7 @@ public class Main_Screen extends AppCompatActivity
     ImageView imageView;
     static final int REQUEST_IMAGE_CAPTURE =1;
     static final int REQUEST_SELECT_FILE =2;
+    RelativeLayout custom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +98,17 @@ public class Main_Screen extends AppCompatActivity
                 }
             }
         });
+        custom = (RelativeLayout) findViewById(R.id.custom);
+
+        custom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Main_Screen.this,Custom.class);
+                startActivity(intent);
+            }
+        });
     }
+
 
     @Override
     public void onBackPressed() {
