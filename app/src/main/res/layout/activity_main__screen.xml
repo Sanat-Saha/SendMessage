@@ -20,6 +20,6 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main__screen"
-        android:background="#b4ffffff" />
+        android:background="#c8ffffff" />
 
 </android.support.v4.widget.DrawerLayout>

@@ -30,4 +30,6 @@ dependencies {
     compile 'com.android.support:design:23.3.0'
     compile 'com.wdullaer:materialdatetimepicker:2.1.1'
     compile 'com.github.rey5137:material:1.2.2'
+    compile 'org.adw.library:discrete-seekbar:1.0.1'
+
 }

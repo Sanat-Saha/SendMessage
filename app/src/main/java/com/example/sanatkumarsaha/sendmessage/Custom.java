@@ -23,7 +23,7 @@ public class Custom extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
-        Spinner sp = (Spinner)findViewById(R.id.spin);
+        com.rey.material.widget.Spinner sp = (com.rey.material.widget.Spinner) findViewById(R.id.spin);
         List<String> categories = new ArrayList<String>();
         categories.add("Type1");
         categories.add("Type2");

@@ -3,7 +3,9 @@
     <group android:id="@+id/group2" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_signin"
-            android:title="Log In" />
+            android:title="Log In"
+            android:icon="@drawable/ic_menu_camera"
+            />
     </group>
 </menu>
 

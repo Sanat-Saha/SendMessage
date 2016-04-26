@@ -65,14 +65,18 @@ tools:context="com.example.sanatkumarsaha.sendmessage.Register">
                 android:id="@+id/email_login_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:elevation="6dp">
 
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#faffbd"
-                    android:theme = "@style/AutoCompleteTextViewLight">
+                    android:theme = "@style/AutoCompleteTextViewLight"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -91,7 +95,9 @@ tools:context="com.example.sanatkumarsaha.sendmessage.Register">
                     android:layout_height="wrap_content"
                     android:background="#faffbd"
                     android:theme = "@style/AutoCompleteTextViewLight"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
                     <EditText
                         android:id="@+id/username"
                         android:textColor="#464646"
@@ -104,7 +110,6 @@ tools:context="com.example.sanatkumarsaha.sendmessage.Register">
                         android:singleLine="true"
                         android:maxLength="255"
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_"
-
                         />
 
                 </android.support.design.widget.TextInputLayout>
@@ -113,7 +118,9 @@ tools:context="com.example.sanatkumarsaha.sendmessage.Register">
                     android:layout_height="wrap_content"
                     android:background="#faffbd"
                     android:theme = "@style/AutoCompleteTextViewLight"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
 
                     <AutoCompleteTextView
                         android:id="@+id/email"
@@ -136,7 +143,9 @@ tools:context="com.example.sanatkumarsaha.sendmessage.Register">
                     android:background="#faffbd"
                     android:theme = "@style/AutoCompleteTextViewLight"
                     android:onClick="pick"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -160,7 +169,9 @@ tools:context="com.example.sanatkumarsaha.sendmessage.Register">
                     android:background="#faffbd"
                     android:layout_marginTop="15dp"
                     android:textColor="#464646"
-                    android:textColorHint="#ffffff"/>
+                    android:textColorHint="#ffffff"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"/>
                 <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -169,14 +180,18 @@ tools:context="com.example.sanatkumarsaha.sendmessage.Register">
                     android:background="#faffbd"
                     android:layout_marginTop="15dp"
                     android:textColor="#464646"
-                    android:textColorHint="#ffffff"/>
+                    android:textColorHint="#ffffff"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"/>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#faffbd"
                     android:theme = "@style/AutoCompleteTextViewLight"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
 
                     <EditText
                         android:id="@+id/password"
@@ -197,7 +212,9 @@ tools:context="com.example.sanatkumarsaha.sendmessage.Register">
                     android:layout_height="wrap_content"
                     android:background="#faffbd"
                     android:theme = "@style/AutoCompleteTextViewLight"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
 
                     <EditText
                         android:layout_width="match_parent"
@@ -217,7 +234,9 @@ tools:context="com.example.sanatkumarsaha.sendmessage.Register">
                     android:layout_height="wrap_content"
                     android:background="#faffbd"
                     android:theme = "@style/AutoCompleteTextViewLight"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
 
                     <EditText
                         android:id="@+id/mobile"
@@ -242,6 +261,8 @@ tools:context="com.example.sanatkumarsaha.sendmessage.Register">
                     android:layout_marginTop="15dp"
                     android:textColor="#FFFFFF"
                     android:theme="@style/MyButtonGreen"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     />
             </LinearLayout>
         </ScrollView>

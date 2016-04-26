@@ -1,5 +1,7 @@
 package com.example.sanatkumarsaha.sendmessage;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,12 +25,18 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main_Screen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,6 +47,9 @@ public class Main_Screen extends AppCompatActivity
     static final int REQUEST_IMAGE_CAPTURE =1;
     static final int REQUEST_SELECT_FILE =2;
     RelativeLayout custom;
+    RelativeLayout floating;
+    LinearLayout main;
+    DiscreteSeekBar stress, urgency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +58,26 @@ public class Main_Screen extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        floating = (RelativeLayout)findViewById(R.id.floating);
+        main = (LinearLayout)findViewById(R.id.main);
+        stress = (DiscreteSeekBar)findViewById(R.id.stress);
+        urgency = (DiscreteSeekBar)findViewById(R.id.urgency);
+        floating.setVisibility(View.INVISIBLE);
+
+
+
+        com.rey.material.widget.Spinner spinner = (com.rey.material.widget.Spinner) findViewById(R.id.spin);
+        List<String> categories = new ArrayList<String>();
+        categories.add("Type1");
+        categories.add("Type2");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.custom_list_item_2, categories);
+        dataAdapter.setDropDownViewResource(R.layout.custom_list_item_2);
+
+        spinner.setAdapter(dataAdapter);
+
         sp = getSharedPreferences("Check", Context.MODE_PRIVATE);
+        stress.setProgress(sp.getInt("stress",0));
+        urgency.setProgress(sp.getInt("urgency",0));
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -103,8 +133,31 @@ public class Main_Screen extends AppCompatActivity
         custom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Main_Screen.this,Custom.class);
-                startActivity(intent);
+                if (sp.getBoolean("LogInStat",false)) {
+
+                    if (flag2) {
+                        floating.setVisibility(View.VISIBLE);
+                        floating.animate().translationY(0).setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                main.setEnabled(false);
+                            }
+                        });
+                    } else {
+                        floating.setVisibility(View.VISIBLE);
+
+                        floating.animate().translationY(0).setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                main.setEnabled(false);
+                            }
+                        });
+                    }
+                }else {
+                    Toast.makeText(Main_Screen.this,"Please Sign In first to continue",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -116,6 +169,10 @@ public class Main_Screen extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            if (floating.getVisibility()==View.VISIBLE){
+                close(floating);
+            }
+            else
             super.onBackPressed();
         }
     }
@@ -125,6 +182,7 @@ public class Main_Screen extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
 
         getMenuInflater().inflate(R.menu.main__screen, menu);
+        moveDown();
         return true;
     }
 
@@ -188,7 +246,15 @@ public class Main_Screen extends AppCompatActivity
             }
         }
     }
-    public Bitmap getCroppedBitmap(Bitmap bitmap) {
+    public Bitmap getCroppedBitmap(Bitmap bmp) {
+
+        int size;
+        if (bmp.getHeight()>bmp.getWidth())
+            size = bmp.getWidth();
+        else size = bmp.getHeight();
+
+        Bitmap bitmap = Bitmap.createScaledBitmap(bmp, size, size, false);
+
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
                 bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
@@ -205,8 +271,34 @@ public class Main_Screen extends AppCompatActivity
                 bitmap.getWidth() / 2, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bitmap, rect, rect, paint);
-        //Bitmap _bmp = Bitmap.createScaledBitmap(output, 60, 60, false);
         //return _bmp;
         return output;
     }
+
+    public void close(View v){
+        floating.animate().translationY(floating.getHeight()).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                floating.setVisibility(View.INVISIBLE);
+                main.setEnabled(true);
+                flag2=false;
+            }
+        });
+    }
+
+   public void moveDown(){
+       floating.animate().translationY(floating.getHeight());
+   }
+
+    public void submit(View v){
+
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("stress",stress.getProgress());
+        editor.putInt("urgency",urgency.getProgress());
+        editor.apply();
+        close(floating);
+
+    }
+
 }
