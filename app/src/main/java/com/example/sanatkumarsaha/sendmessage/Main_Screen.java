@@ -249,11 +249,28 @@ public class Main_Screen extends AppCompatActivity
     public Bitmap getCroppedBitmap(Bitmap bmp) {
 
         int size;
-        if (bmp.getHeight()>bmp.getWidth())
-            size = bmp.getWidth();
-        else size = bmp.getHeight();
+        Bitmap bitmap;
 
-        Bitmap bitmap = Bitmap.createScaledBitmap(bmp, size, size, false);
+        if (bmp.getWidth() >= bmp.getHeight()){
+
+            bitmap = Bitmap.createBitmap(
+                    bmp,
+                    bmp.getWidth()/2 - bmp.getHeight()/2,
+                    0,
+                    bmp.getHeight(),
+                    bmp.getHeight()
+            );
+
+        }else{
+
+            bitmap = Bitmap.createBitmap(
+                    bmp,
+                    0,
+                    bmp.getHeight()/2 - bmp.getWidth()/2,
+                    bmp.getWidth(),
+                    bmp.getWidth()
+            );
+        }
 
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
                 bitmap.getHeight(), Bitmap.Config.ARGB_8888);
@@ -271,7 +288,6 @@ public class Main_Screen extends AppCompatActivity
                 bitmap.getWidth() / 2, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bitmap, rect, rect, paint);
-        //return _bmp;
         return output;
     }
 
